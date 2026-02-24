@@ -1,5 +1,8 @@
 name: CI
-on: push
+on: 
+  push:
+  workflow_dispatch:
+    
     
 jobs:
   build-and-push:
@@ -19,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: malefstorm1994/k8sapp # Replace with your image name
+          images: malefstorm1994/k8sapp 
           tags: |
             type=sha,format=long # Adds the full commit SHA tag
             type=sha,format=short # Adds the short commit SHA tag (default length 7)
