@@ -1,11 +1,16 @@
 name: CI
 on: 
   push:
-  workflow_dispatch:
+   paths-ignore:
+     - 'k8s/manifests/**'
     
-    
+env:
+  IMAGE_TAG: ${{ github.sha }}
+  DOCKER_HUB_USERNAME: malefstorm1994
+  DOCKER_HUB_REPO: demoapp
+  K8S_DEPLOYMENT_PATH: 'k8s/manifests/deployment.yaml'
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,9 +27,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: malefstorm1994/demoapp 
+          images: ${{ env.DOCKER_HUB_USERNAME}}/${{ env.DOCKER_HUB_REPO }}
           tags: |
-            type=sha,format=long # Adds the full commit SHA tag
+            type=raw,value=${{ env.IMAGE_TAG }}
             type=sha,format=short # Adds the short commit SHA tag (default length 7)
             type=raw,value=latest,priority=70 # Adds "latest" tag
 
@@ -36,3 +41,28 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: build
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} 
+
+      - name: Update image tag
+        run: |
+          sed -i "s|image: .*|image: ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_HUB_REPO }}:${{ env.IMAGE_TAG }}|g" ${{ env.K8S_DEPLOYMENT_PATH }}
+      
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "Automated update for trigger AgroCD"
+          commit_user_name: "ArgoCD"
+          commit_user_email: "vakfuder@gmail.com"
+        
+
+
