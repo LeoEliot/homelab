@@ -28,3 +28,14 @@
 | **Приложение** | Простое Python (Flask) API / Nginx |
 
 ---
+
+## 🚀 Бытсрый старт
+
+## Предварительные требования
+
+Убедитесь, что у вас установлены
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Kind](https://kind.sigs.k8s.io/) или [Minikube](https://minikube.sigs.k8s.io/docs/start/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [Helm](https://helm.sh/docs/intro/install/)(v3+)
