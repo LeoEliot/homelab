@@ -42,6 +42,16 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: 'docker.io/${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_HUB_REPO }}:${{ env.IMAGE_TAG }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
   deploy:
     runs-on: ubuntu-latest
     permissions:
