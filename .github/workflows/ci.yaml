@@ -13,7 +13,7 @@ jobs:
         with:
           registry: docker.io
           username: malefstorm1994
-          
+          password: ViVa1994@WS
 
       - name: Extract Docker metadata (tags and labels)
         id: meta
