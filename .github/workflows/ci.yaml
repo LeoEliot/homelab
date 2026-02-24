@@ -22,5 +22,5 @@ jobs:
           context: ./k8s/app
           push: true
           tags: 
-             docker.io/malefstorm1994/k8sapp:${{ github.sha }}
-             docker.io/malefstorm1994/k8sapp:latest
+             malefstorm1994/k8sapp:${{ github.sha }}
+             malefstorm1994/k8sapp:latest
