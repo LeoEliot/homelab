@@ -13,7 +13,17 @@ jobs:
         with:
           registry: docker.io
           username: malefstorm1994
-          password: ViVa1994@WS
+          
+
+      - name: Extract Docker metadata (tags and labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: my-docker-username/my-image-name # Replace with your image name
+          tags: |
+            type=sha,format=long # Adds the full commit SHA tag
+            type=sha,format=short # Adds the short commit SHA tag (default length 7)
+            type=raw,value=latest,priority=70 # Adds "latest" tag
 
 
       - name: Build and push Docker image
@@ -21,4 +31,5 @@ jobs:
         with:
           context: ./k8s/app
           push: true
-          tags: malefstorm1994/k8sapp:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
