@@ -1,12 +1,14 @@
 name: CI
 on: 
   push:
-  workflow_dispatch:
+   
     
     
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    outputs:
+      docker_tags: ${{ steps.meta.outputs.tags }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,3 +38,13 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+      - name: Edit Deployment yaml
+        run: |
+          echo "Tags: ${{ need.build-and-push.outputs.docker_tags}}"
+
