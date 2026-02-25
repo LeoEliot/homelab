@@ -1,0 +1,9 @@
+---
+common_user: "malef"
+docker_user: "malef"
+
+common_user_password: ""
+common_user_groups: ["sudo"]
+common_enable_http: false
+common_enable_ssh: true
+common_disable_password_access: false

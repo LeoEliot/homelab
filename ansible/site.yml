@@ -1,0 +1,15 @@
+---
+- name: Start
+  hosts: all
+  become: true
+
+  vars_prompt:
+    - name: user_password
+      prompt: "Enter password"
+      private: true
+
+  roles:
+    - role: common
+      vars:
+        common_user_password: "{{ user_password }}"
+    - role: docker
