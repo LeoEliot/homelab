@@ -21,15 +21,15 @@
 | **Облачная инфраструктура** | Google Cloud Platforms (GCP) |
 | **Инструменты IaC** | Terraform, Ansible |
 | **Контейнеризация** | Docker, Docker Compose (для локальной разработки) |
-| **Оркестрация** | Kubernetes (kubeadm / managed K8s) |
+| **Оркестрация** | Kubernetes (kubeadm / managed K8s /k3s) |
 | **CI / CD** | GitHub Actions, ArgoCD (GitOps) |
 | **Мониторинг** | Prometheus, Grafana, Node Exporter |
 | **Безопасность** | Trivy (сканирование образов), Secrets (GitHub Secrets) |
-| **Приложение** | Простое Python (Flask) API / Nginx |
+| **Приложение** | Простое Python (Flask) API |
 
 ---
 
-## 🚀 Бытсрый старт
+## 🚀 Быcnрый старт
 
 ## Предварительные требования
 
@@ -39,3 +39,6 @@
 - [Kind](https://kind.sigs.k8s.io/) или [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Helm](https://helm.sh/docs/intro/install/)(v3+)
+- [ArgoCD](https://argo-cd.readthedocs.io/en/stable/getting_started/)
+- [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+- [Ansible](https://docs.ansible.com/projects/ansible/latest/installation_guide/intro_installation.html)

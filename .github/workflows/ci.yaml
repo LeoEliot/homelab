@@ -1,8 +1,11 @@
 name: CI
 on: 
   push:
-   paths-ignore:
-     - 'k8s/manifests/**'
+    branches:
+      - main
+    paths-ignore:
+      - 'k8s/manifests/**'
+      
     
 env:
   IMAGE_TAG: ${{ github.sha }}

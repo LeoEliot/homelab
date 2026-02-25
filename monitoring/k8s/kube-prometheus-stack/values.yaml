@@ -1,0 +1,80 @@
+grafana:
+  adminPassword: "admin"
+  ingress:
+    enabled: false
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-staging
+    host: 
+      - grafana.example.com
+    tls:
+      - secretName: grafana-general-tls
+        hosts:
+          - grafana.example.com
+prometheus:
+  prometheusSpec:
+    retention: 7d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+    resources:
+      requests:
+        memory: 400Mi
+        cpu: 200m
+      limits:
+        memory: 2Gi
+        cpu: 1
+
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+    resources:
+      requests:
+        memory: 200Mi
+        cpu: 100m
+      limits:
+        memory: 500Mi
+        cpu: 500m
+
+kube-state-metrics:
+  enabled: true
+
+nodeExporter:
+  enabled: true
+
+prometheus-node-exporter:
+  enabled: true
+
+kubelet:
+  enabled: true
+
+# Additional scraping configurations
+defaultRules:
+  create: true
+  rules:
+    alertmanager: true
+    etcd: true
+    general: true
+    k8s: true
+    kubeApiserver: true
+    kubePrometheusNodeAlerting: true
+    kubePrometheusNodeRecording: true
+    kubernetesApps: true
+    kubernetesResources: true
+    kubernetesStorage: true
+    kubernetesSystem: true
+    kubeScheduler: true
+    network: true
+    node: true
+    prometheus: true
+    prometheusOperator: true
