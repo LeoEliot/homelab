@@ -1,7 +1,6 @@
 variable "project_id" {
   description = "GCP Project"
   type = string
-  default = "malefstorm"
 }
 
 variable "region" {

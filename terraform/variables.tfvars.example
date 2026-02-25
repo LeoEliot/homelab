@@ -1,0 +1,4 @@
+project_id = "GCP projects id"
+region = "GCP region"
+zone = "GCP zone"
+cluster_name = "Name of cluster"

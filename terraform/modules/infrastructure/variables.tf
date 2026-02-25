@@ -21,3 +21,8 @@ variable "cluster_name" {
   type = string
   default = "kubetrain"
 }
+
+variable "email" {
+  type = string
+  default = "vakfuder@gmail.com"
+}
