@@ -16,7 +16,7 @@ spec:
         app: demoapp
     spec:
       containers:
-      - image: malefstorm1994/demoapp:8c635611ebbcd5c8873607008de66d1bf7130fb6
+      - image: malefstorm1994/demoapp:a71886a799dbdc92b9278dd346282d76665a5528
         name: demoapp
         ports:
         - containerPort: 8080
