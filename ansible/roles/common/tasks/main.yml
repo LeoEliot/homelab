@@ -1,0 +1,50 @@
+---
+- name: Update and upgrade system
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    upgrade: safe
+  when:
+    - ansible_facts["os_family"] == "Debian"
+
+- name: Create user
+  ansible.builtin.user:
+    name: "{{ common_user }}"
+    create_home: true
+    password: "{{ common_user_password | password_hash('sha512', '2323') }}"
+    shell: /bin/bash
+    groups: "{{ common_user_groups }}"
+    append: true
+
+- name: Add SSH to remote user
+  ansible.posix.authorized_key:
+    user: "{{ common_user }}"
+    state: present
+    key: "{{ lookup('file', '/Users/malef/.ssh/id_ed25519.pub') }}"
+
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled
+    policy: deny
+
+- name: Open SSH
+  community.general.ufw:
+    rule: allow
+    port: "22"
+    proto: tcp
+
+- name: Open HTTP
+  community.general.ufw:
+    rule: allow
+    port: "80"
+    proto: tcp
+  when: common_enable_http
+
+- name: Settings SSHD
+  ansible.builtin.template:
+    src: templates/sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart sshd

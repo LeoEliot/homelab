@@ -1,0 +1,7 @@
+---
+common_user: malef
+common_user_password: ""
+common_user_groups: ["sudo"]
+common_enable_http: true
+common_enable_ssh: true
+common_disable_password_access: true
