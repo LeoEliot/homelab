@@ -21,11 +21,11 @@
 | **Облачная инфраструктура** | Google Cloud Platforms (GCP) |
 | **Инструменты IaC** | Terraform, Ansible |
 | **Контейнеризация** | Docker, Docker Compose (для локальной разработки) |
-| **Оркестрация** | Kubernetes (kubeadm / managed K8s) |
+| **Оркестрация** | Kubernetes (kubeadm / managed K8s /k3s) |
 | **CI / CD** | GitHub Actions, ArgoCD (GitOps) |
 | **Мониторинг** | Prometheus, Grafana, Node Exporter |
 | **Безопасность** | Trivy (сканирование образов), Secrets (GitHub Secrets) |
-| **Приложение** | Простое Python (Flask) API / Nginx |
+| **Приложение** | Простое Python (Flask) API |
 
 ---
 
