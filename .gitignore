@@ -1,13 +1,21 @@
-# OS generated files
+# macOS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+.AppleDouble
+.LSOverride
 
-# IDEs
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Editor directories and files
 .vscode/
 .idea/
 *.swp
@@ -17,19 +25,26 @@ Thumbs.db
 .classpath
 .settings/
 
+# Build outputs
+dist/
+build/
+target/
+*.tgz
+
+# Node modules
+node_modules/
+
 # Logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment files
+# Environment variables
 .env
 .env.local
 .env.*.local
-
-# Node modules
-node_modules/
 
 # Python
 __pycache__/
@@ -38,17 +53,37 @@ __pycache__/
 *.so
 .Python
 venv/
-env/
 ENV/
-*.egg-info/
-dist/
-build/
+.venv
 
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.cache
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
 
-.ansible/
-variable.tfvars
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+crash.*.log
+terraform.tfplan
+*.tfvars
+
+# Ansible
+*.retry
+vault.yml
+
+# Secrets (be careful with these)
+*.pem
+*.key
+*.cert
+*.crt
+id_rsa*
+*.secrets
